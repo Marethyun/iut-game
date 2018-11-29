@@ -1,8 +1,8 @@
 #include "Color.h"
 
+const std::string Color::reset(vt100("0"));
 const std::string Color::bold(vt100("1"));
 
-const std::string Color::reset(vt100("0"));
 const std::string Color::black(vt100("30"));
 const std::string Color::red(vt100("31"));
 const std::string Color::green(vt100("32"));
@@ -10,7 +10,7 @@ const std::string Color::yellow(vt100("33"));
 const std::string Color::blue(vt100("34"));
 const std::string Color::magenta(vt100("35"));
 const std::string Color::cyan(vt100("36"));
-const std::string Color::lightGray(vt100("37"));
+const std::string Color::lightgray(vt100("37"));
 
 const std::string Color::bg_black(vt100("40"));
 const std::string Color::bg_red(vt100("41"));

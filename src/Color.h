@@ -15,7 +15,7 @@ public:
     static const std::string blue;
     static const std::string magenta;
     static const std::string cyan;
-    static const std::string lightGray;
+    static const std::string lightgray;
 
     static const std::string bg_black;
     static const std::string bg_red;
