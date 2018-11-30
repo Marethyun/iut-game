@@ -11,6 +11,15 @@ public:
     static void color(std::string string);
     static void matrix(const CellMatrix &cellMatrix);
     static void moveCursor(const unsigned &x, const unsigned &y);
+
+    static void saveCursor();
+    static void unsaveCursor();
+    static void restoreCursor();
+
+    static void cursorUp(const unsigned &count);
+    static void cursorDown(const unsigned &count);
+    static void cursorBack(const unsigned &count);
+    static void cursorForward(const unsigned &count);
 };
 
 

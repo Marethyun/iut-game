@@ -29,10 +29,12 @@ unsigned int CellMatrix::getWidth() const {
     return width;
 }
 
-Cell &CellMatrix::get(const unsigned &x, const unsigned &y) {
+// TODO: return by reference
+Cell CellMatrix::get(const unsigned &x, const unsigned &y) const {
     return matrix[x][y];
 }
 
-Cell &CellMatrix::get(Location location) {
+// TODO: return by reference
+Cell CellMatrix::get(Location location) {
     return get(location.getX(), location.getY());
 }
