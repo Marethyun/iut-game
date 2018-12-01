@@ -1,5 +1,8 @@
 #include <iostream>
 #include "Terminal.h"
+#include "Color.h"
+
+using namespace std;
 
 void Terminal::clear() {
     std::cout << "\033[H\033[2J";
@@ -10,7 +13,7 @@ void Terminal::color(std::string color) {
 }
 
 // Display a matrix from the current cursor position
-void Terminal::matrix(const CellMatrix &cellMatrix) {
+void Terminal::matrix(CellMatrix &cellMatrix) {
     //TODO: Display a matrix
 
     for (unsigned i(0); i < cellMatrix.getHeight(); ++i) {

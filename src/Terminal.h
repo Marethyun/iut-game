@@ -9,7 +9,7 @@ class Terminal {
 public:
     static void clear();
     static void color(std::string string);
-    static void matrix(const CellMatrix &cellMatrix);
+    static void matrix(CellMatrix &cellMatrix);
     static void moveCursor(const unsigned &x, const unsigned &y);
 };
 
