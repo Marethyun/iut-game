@@ -16,6 +16,8 @@ public:
 
     char getCharacter() const;
 
+    Cell &operator=(const Cell & other);
+
 private:
     std::string color;
     std::string backgroundColor;
