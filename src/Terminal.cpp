@@ -46,14 +46,14 @@ void Terminal::restoreCursor() {
     std::cout << "\0338";
 }
 void Terminal::cursorUp(const unsigned &count) {
-    std::cout << "033[" + std::to_string(count) + "A";
+    std::cout << "\033[" + std::to_string(count) + "A";
 }
 void Terminal::cursorDown(const unsigned &count) {
-    std::cout << "033[" + std::to_string(count) + "B";
+    std::cout << "\033[" + std::to_string(count) + "B";
 }
 void Terminal::cursorForward(const unsigned &count) {
-    std::cout << "033[" + std::to_string(count) + "C";
+    std::cout << "\033[" + std::to_string(count) + "C";
 }
 void Terminal::cursorBack(const unsigned &count) {
-    std::cout << "033[" + std::to_string(count) + "D";
+    std::cout << "\033[" + std::to_string(count) + "D";
 }
