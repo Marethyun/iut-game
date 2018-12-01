@@ -14,7 +14,10 @@ public:
     unsigned int getWidth() const;
 
     Cell & get(const unsigned &x, const unsigned &y);
-    Cell & get(Location location);
+    Cell & get(const Location &location);
+
+    Cell * at(const unsigned &x, const unsigned &y);
+    Cell * at(const Location &location);
 
 private:
     unsigned height;
