@@ -18,28 +18,42 @@ void Terminal::matrix(CellMatrix &cellMatrix) {
 
     for (unsigned i(0); i < cellMatrix.getHeight(); ++i) {
 
-//        saveCursor();
+        saveCursor();
 
         for (unsigned j(0); j < cellMatrix.getWidth(); ++j) {
             Cell cell = cellMatrix.get(i, j);
 
-            cout << cell.getBackgroundColor();
-            cout << cell.getColor();
-            cout << cell.getCharacter();
-            cout << Color::reset;
-
-            // TODO: Refactor
-            cerr << cell.getBackgroundColor() << cell.getColor() << cell.getCharacter();
+            cout << cell.getBackgroundColor() << cell.getColor() << cell.getCharacter() << Color::reset;
         }
 
-        cout << endl;
-
         // Place cursor at the beginning of the next line
-//        restoreCursor();
-//        cursorDown(1);
+        restoreCursor();
+        cursorDown(1);
     }
 }
 
 void Terminal::moveCursor(const unsigned &x, const unsigned &y) {
     std::cout << "\033[" + std::to_string(x) + ';' + std::to_string(y) + 'H';
+}
+
+void Terminal::saveCursor() {
+    std::cout << "\033[s";
+}
+void Terminal::unsaveCursor() {
+    std::cout << "\033[u";
+}
+void Terminal::restoreCursor() {
+    std::cout << "\0338";
+}
+void Terminal::cursorUp(const unsigned &count) {
+    std::cout << "033[" + std::to_string(count) + "A";
+}
+void Terminal::cursorDown(const unsigned &count) {
+    std::cout << "033[" + std::to_string(count) + "B";
+}
+void Terminal::cursorForward(const unsigned &count) {
+    std::cout << "033[" + std::to_string(count) + "C";
+}
+void Terminal::cursorBack(const unsigned &count) {
+    std::cout << "033[" + std::to_string(count) + "D";
 }
