@@ -5,7 +5,8 @@
 using namespace std;
 
 void Terminal::clear() {
-    std::cout << "\033[H\033[2J";
+    //
+    printf("\033[2J\033[H");
 }
 
 void Terminal::color(std::string color) {
@@ -23,13 +24,17 @@ void Terminal::matrix(CellMatrix &cellMatrix) {
         for (unsigned j(0); j < cellMatrix.getWidth(); ++j) {
             Cell cell = cellMatrix.get(i, j);
 
-            cout << cell.getBackgroundColor() << cell.getColor() << cell.getCharacter() << Color::reset;
+            cout << cell.getFormat() << cell.getCharacter() << Color::reset;
         }
 
         // Place cursor at the beginning of the next line
         restoreCursor();
         cursorDown(1);
     }
+}
+
+void Terminal::cell(const Cell &cel) {
+    cout << cel.getFormat() << cel.getCharacter() << Color::reset;
 }
 
 void Terminal::moveCursor(const unsigned &x, const unsigned &y) {
