@@ -30,11 +30,11 @@ unsigned int CellMatrix::getWidth() const {
 }
 
 Cell& CellMatrix::get(const unsigned &x, const unsigned &y) {
-    return matrix[x][y];
+    return *at(x, y);
 }
 
 Cell& CellMatrix::get(const Location &location) {
-    return get(location.getX(), location.getY());
+    return *at(location.getX(), location.getY());
 }
 
 Cell* CellMatrix::at(const unsigned &x, const unsigned &y) {
