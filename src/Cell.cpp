@@ -1,17 +1,14 @@
 #include "Cell.h"
 #include "Color.h"
 
-Cell::Cell() : color(Color::green), backgroundColor(Color::bg_blue), character('X') {}
+// Blank cell
+Cell::Cell() : format(""), character(' ') {}
 
-Cell::Cell(const std::string &color, const std::string &backgroundColor, char character)
-        : color(color), backgroundColor(backgroundColor), character(character) {}
+Cell::Cell(const std::string &format, char character)
+        : format(format), character(character) {}
 
-const std::string &Cell::getColor() const {
-    return color;
-}
-
-const std::string &Cell::getBackgroundColor() const {
-    return backgroundColor;
+const std::string &Cell::getFormat() const {
+    return format;
 }
 
 char Cell::getCharacter() const {
@@ -20,8 +17,7 @@ char Cell::getCharacter() const {
 
 Cell &Cell::operator=(const Cell &other) {
 
-    this->color = other.getColor();
-    this->backgroundColor = other.getBackgroundColor();
+    this->format = other.getFormat();
     this->character = other.getCharacter();
 
     return *this;

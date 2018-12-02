@@ -8,19 +8,15 @@ class Cell {
 
 public:
     Cell();
-    Cell(const std::string &color, const std::string &backgroundColor, char character);
+    Cell(const std::string &format, char character);
 
-    const std::string &getColor() const;
-
-    const std::string &getBackgroundColor() const;
-
+    const std::string &getFormat() const;
     char getCharacter() const;
 
     Cell &operator=(const Cell & other);
 
 private:
-    std::string color;
-    std::string backgroundColor;
+    std::string format;
     char character;
 
 };
