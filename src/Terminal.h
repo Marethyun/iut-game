@@ -10,6 +10,9 @@ public:
     static void clear();
     static void color(std::string string);
     static void matrix(CellMatrix &cellMatrix);
+
+    static void cell(const Cell &cel);
+
     static void moveCursor(const unsigned &x, const unsigned &y);
 
     static void saveCursor();
