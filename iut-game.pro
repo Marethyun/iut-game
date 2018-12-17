@@ -13,7 +13,8 @@ SOURCES += \
     src/Location.cpp \
     src/main.cpp \
     src/Scene.cpp \
-    src/Terminal.cpp
+    src/Terminal.cpp \
+    src/iprintable.cpp
 
 HEADERS += \
     src/exception/GameException.h \
@@ -25,4 +26,5 @@ HEADERS += \
     src/Game.h \
     src/Location.h \
     src/Scene.h \
-    src/Terminal.h
+    src/Terminal.h \
+    src/iprintable.h

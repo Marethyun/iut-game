@@ -14,7 +14,7 @@ void Terminal::color(std::string color) {
 }
 
 // Display a matrix from the current cursor position
-void Terminal::matrix(CellMatrix &cellMatrix) {
+void Terminal::matrix(CellMatrix<> &cellMatrix) {
     //TODO: Display a matrix
 
     for (unsigned i(0); i < cellMatrix.getHeight(); ++i) {

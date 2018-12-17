@@ -4,12 +4,13 @@
 
 #include <string>
 #include "CellMatrix.h"
+#include "Cell.h"
 
 class Terminal {
 public:
     static void clear();
     static void color(std::string string);
-    static void matrix(CellMatrix &cellMatrix);
+    template <typename C> static void matrix(CellMatrix<C> &cellMatrix);
 
     static void cell(const Cell &cel);
 

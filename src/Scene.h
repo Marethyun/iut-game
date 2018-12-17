@@ -2,6 +2,7 @@
 #define IUT_GAME_SCENE_H
 
 #include "CellMatrix.h"
+#include "Cell.h"
 
 class Scene {
 
@@ -11,7 +12,7 @@ protected:
     const unsigned height;
     const unsigned width;
 
-    CellMatrix stageMatrix;
+    CellMatrix<Cell> stageMatrix;
 
 public:
     Scene(const unsigned int &height, const unsigned int &width, const std::string &identifier);

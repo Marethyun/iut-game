@@ -4,12 +4,12 @@
 
 using namespace std;
 
-CellMatrix::CellMatrix(const unsigned int &height, const unsigned int &width, const Cell &defaultCell) : height(height), width(width) {
+template <typename C> CellMatrix<C>::CellMatrix(const unsigned int &height, const unsigned int &width, const C &defaultCell) : height(height), width(width) {
 
-    this->matrix = vector<vector<Cell>>(height);
+    this->matrix = vector<vector<C>>(height);
 
     for (unsigned i(0); i < this->matrix.size(); ++i) {
-        vector<Cell> line(width);
+        vector<C> line(width);
 
         for (unsigned j(0); j < line.size(); ++j) {
             line[j] = defaultCell;
@@ -19,28 +19,28 @@ CellMatrix::CellMatrix(const unsigned int &height, const unsigned int &width, co
     }
 }
 
-CellMatrix::CellMatrix(const vector<vector<Cell>> &matrix) : matrix(matrix) {}
+template <typename C> CellMatrix<C>::CellMatrix(const vector<vector<C>> &matrix) : matrix(matrix) {}
 
-unsigned int CellMatrix::getHeight() const {
+template <typename C> unsigned int CellMatrix<C>::getHeight() const {
     return height;
 }
 
-unsigned int CellMatrix::getWidth() const {
+template <typename C> unsigned int CellMatrix<C>::getWidth() const {
     return width;
 }
 
-Cell& CellMatrix::get(const unsigned &x, const unsigned &y) {
+template <typename C> C& CellMatrix<C>::get(const unsigned &x, const unsigned &y) {
     return *at(x, y);
 }
 
-Cell& CellMatrix::get(const Location &location) {
+template <typename C> C& CellMatrix<C>::get(const Location &location) {
     return *at(location.getX(), location.getY());
 }
 
-Cell* CellMatrix::at(const unsigned &x, const unsigned &y) {
+template <typename C> C* CellMatrix<C>::at(const unsigned &x, const unsigned &y) {
     return &matrix[x][y];
 }
 
-Cell* CellMatrix::at(const Location &location) {
+template <typename C> C* CellMatrix<C>::at(const Location &location) {
     return at(location.getX(), location.getY());
 }
