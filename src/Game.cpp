@@ -16,12 +16,12 @@ Game *Game::get() {
     return singleton;
 }
 
-void Game::addScene(Scene &scene) {
-    string identifier = scene.getIdentifier(); // Imperative, getter returns a const and we need a non-const
+void Game::addScene(Scene* &scene) {
+    string identifier = scene->getIdentifier(); // Imperative, getter returns a const and we need a non-const
     if (this->scenes.count(&identifier)){
         throw GameException("scene with id '" + identifier + "' is already registered");
     }
-    this->scenes.insert(pair<string*, Scene>(&scene.getIdentifier(), scene));
+    this->scenes.insert(pair<string*, Scene*>(&identifier, scene));
 }
 
 void Game::loadScene(std::string &identifier) {

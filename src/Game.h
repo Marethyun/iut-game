@@ -12,7 +12,7 @@ private:
     static Game* singleton;
     Game();
 
-    std::map<std::string*, Scene> scenes = std::map<std::string*, Scene>();
+    std::map<std::string*, Scene*> scenes = std::map<std::string*, Scene*>();
     Scene* currentScene = nullptr;
 
     unsigned fps = 30;
@@ -21,7 +21,7 @@ private:
 public:
     static Game* get();
 
-    void addScene(Scene & scene);
+    void addScene(Scene* & scene);
 
     void loadScene(std::string &identifier);
     void loadScene(Scene & scene);
