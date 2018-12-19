@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Color.h"
 
-#include "CellMatrix.h"
+#include "Matrix.h"
 #include "Terminal.h"
 
 #include <unistd.h>
@@ -9,25 +9,30 @@
 using namespace std;
 
 int main() {
+//    Cell c1 = Cell(Color::red, '5');
 
-//    CellMatrix* matrix = new CellMatrix(10, 10, Cell(Color::reset, '#'));
+    Matrix m = Matrix(5, 10, Cell(Color::bg_lightgray));
 
-//    *matrix->at(Location(0, 4)) = Cell(Color::red + Color::bg_blue, '0');
+//    for (unsigned i(0); i < 5; ++i){
+//        m.merge(i, 1, Cell(Color::bg_black));
 
-//    Terminal::moveCursor(10, 10);
-//    Terminal::matrix(*matrix);
+//        m.merge(i, 3, Cell(Color::bg_black));
+//    }
 
-    while (true) {
-        usleep(1000000);
-        cout << "Hello" << endl;
-    }
+//    m.merge(3, 3, Cell(Color::bg_yellow, '.'));
 
-//    Terminal::clear();
+//    m.merge(0, 0, Cell(Color::red + Color::bold, '&'));
 
-//    Terminal::cell(Cell(Color::bg_red, ' '));
+//    m.merge(4, 0, Cell(Color::magenta, '1'));
+//    m.merge(2, 2, Cell(Color::magenta, '1'));
 
-    char c;
-    cin >> c;
+//    m.merge(0, 2, Cell(Color::yellow, '.'));
+
+//    m.merge(0, 4, Cell(Color::bg_green));
+
+    m.merge(0, 1, Cell('9'));
+
+    Terminal::matrix(m);
 
     return 0;
 }

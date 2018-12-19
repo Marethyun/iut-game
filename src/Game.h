@@ -2,7 +2,7 @@
 #define IUT_GAME_GAME_H
 
 #include <map>
-#include "CellMatrix.h"
+#include "Matrix.h"
 #include "Scene.h"
 
 // This class is a singleton

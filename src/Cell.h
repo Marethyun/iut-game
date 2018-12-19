@@ -7,13 +7,17 @@
 class Cell {
 
 public:
+    static const char NULCHAR = ' ';
+
     Cell();
-    Cell(const std::string &format, char character);
+    Cell(const std::string &format);
+    Cell(const char character);
+    Cell(const std::string &format, const char character);
 
     const std::string &getFormat() const;
-    char getCharacter() const;
+    const char &getCharacter() const;
 
-    Cell &operator=(const Cell & other);
+    Cell operator+(const Cell & other);
 
 private:
     std::string format;
