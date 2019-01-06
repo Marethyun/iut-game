@@ -22,18 +22,16 @@ public:
 
     void replace(const unsigned &x, const unsigned &y, const Cell &other);
     void replace(const Location &location, const Cell &other);
-    void replace(const unsigned &x, const unsigned &y, const Matrix &other);
-    void replace(const Location &location, const Matrix &other);
+    void replace(const unsigned &x, const unsigned &y, Matrix &other);
+    void replace(const Location &location, Matrix &other);
 
     void merge(const unsigned &x, const unsigned &y, const Cell &other);
     void merge(const Location &location, const Cell &other);
-    void merge(const unsigned &x, const unsigned &y, const Matrix &other);
-    void merge(const Location &location, const Matrix &other);
+    void merge(const unsigned &x, const unsigned &y, Matrix &other);
+    void merge(const Location &location, Matrix &other);
 
     bool isInBounds(const unsigned &x, const unsigned &y);
     bool isInBounds(const Location &location);
-
-    Matrix operator+(const Matrix &matrix);
 
 private:
     unsigned height;

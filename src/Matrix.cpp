@@ -54,12 +54,37 @@ void Matrix::replace(const Location &location, const Cell &other) {
     replace(location.getX(), location.getY(), other);
 }
 
+void Matrix::replace(const unsigned &x, const unsigned &y, Matrix &other) {
+    
+    for (unsigned i(x), i2(0); i < this->getWidth() && i2 < other.getWidth(); ++i, ++i2) {
+        for (unsigned j(y), j2(0); j < this->getHeight() && j2 < other.getHeight(); ++j, ++j2) {
+            this->replace(i, j, other.get(i2, j2));
+        }
+    }
+}
+
+void Matrix::replace(const Location &location, Matrix &other) {
+    this->replace(location.getX(), location.getY(), other);
+}
+
 void Matrix::merge(const unsigned &x, const unsigned &y, const Cell &other) {
     *at(x, y) = *at(x, y) + other;
 }
 
 void Matrix::merge(const Location &location, const Cell &other) {
     merge(location.getX(), location.getY(), other);
+}
+
+void Matrix::merge(const unsigned &x, const unsigned &y, Matrix &other) {
+    for (unsigned i(x), i2(0); i < this->getWidth() && i2 < other.getWidth(); ++i, ++i2) {
+        for (unsigned j(y), j2(0); j < this->getHeight() && j2 < other.getHeight(); ++j, ++j2) {
+            this->merge(i, j, other.get(i2, j2));
+        }
+    }
+}
+
+void Matrix::merge(const Location &location, Matrix &other) {
+    this->merge(location.getX(), location.getY(), other);
 }
 
 bool Matrix::isInBounds(const unsigned &x, const unsigned &y) {
@@ -69,9 +94,3 @@ bool Matrix::isInBounds(const unsigned &x, const unsigned &y) {
 bool Matrix::isInBounds(const Location &location) {
     return isInBounds(location.getX(), location.getY());
 }
-
-//Matrix Matrix::operator+(const Matrix &other){
-//    if (this->getHeight() == other.getHeight() && this->getWidth() == other.getWidth()) {
-
-//    }
-//}

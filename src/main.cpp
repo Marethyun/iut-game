@@ -6,33 +6,41 @@
 
 #include <unistd.h>
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <termios.h>
+
+#include <thread>
+
 using namespace std;
 
+char getch() {
+        char buf = 0;
+        struct termios old = {0};
+        if (tcgetattr(0, &old) < 0)
+                perror("tcsetattr()");
+        old.c_lflag &= ~ICANON;
+        old.c_lflag &= ~ECHO;
+        old.c_cc[VMIN] = 1;
+        old.c_cc[VTIME] = 0;
+        if (tcsetattr(0, TCSANOW, &old) < 0)
+                perror("tcsetattr ICANON");
+        if (read(0, &buf, 1) < 0)
+                perror ("read()");
+        old.c_lflag |= ICANON;
+        old.c_lflag |= ECHO;
+        if (tcsetattr(0, TCSADRAIN, &old) < 0)
+                perror ("tcsetattr ~ICANON");
+        return (buf);
+}
+
 int main() {
-//    Cell c1 = Cell(Color::red, '5');
-
-    Matrix m = Matrix(5, 10, Cell(Color::bg_lightgray));
-
-//    for (unsigned i(0); i < 5; ++i){
-//        m.merge(i, 1, Cell(Color::bg_black));
-
-//        m.merge(i, 3, Cell(Color::bg_black));
-//    }
-
-//    m.merge(3, 3, Cell(Color::bg_yellow, '.'));
-
-//    m.merge(0, 0, Cell(Color::red + Color::bold, '&'));
-
-//    m.merge(4, 0, Cell(Color::magenta, '1'));
-//    m.merge(2, 2, Cell(Color::magenta, '1'));
-
-//    m.merge(0, 2, Cell(Color::yellow, '.'));
-
-//    m.merge(0, 4, Cell(Color::bg_green));
-
-    m.merge(0, 1, Cell('9'));
-
-    Terminal::matrix(m);
-
+    
+    for (;;) {
+        char c = getch();
+    
+        cout << c << endl;
+    }
+    
     return 0;
 }

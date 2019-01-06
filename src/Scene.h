@@ -15,10 +15,9 @@ public:
     const std::string &getIdentifier() const;
 
     // Update the game info with inputs
-    // TODO: Implement an input buffer (retrieved inputs since the last frame)
     virtual void update() = 0;
 
-    // Renders the game CellMatrix on the terminal
+    // Renders the game matrix on the terminal
     virtual void render() = 0;
 
 };

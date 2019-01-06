@@ -1,5 +1,6 @@
 TEMPLATE = app
 CONFIG += console c++11
+CONFIG += thread
 CONFIG -= app_bundle
 CONFIG -= qt
 
@@ -13,7 +14,6 @@ SOURCES += \
     src/main.cpp \
     src/Scene.cpp \
     src/Terminal.cpp \
-    src/iprintable.cpp \
     src/Matrix.cpp
 
 HEADERS += \
@@ -26,5 +26,4 @@ HEADERS += \
     src/Location.h \
     src/Scene.h \
     src/Terminal.h \
-    src/iprintable.h \
     src/Matrix.h

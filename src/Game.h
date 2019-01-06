@@ -5,7 +5,6 @@
 #include "Matrix.h"
 #include "Scene.h"
 
-// This class is a singleton
 class Game {
 private:
 
@@ -13,21 +12,20 @@ private:
     Game();
 
     std::map<std::string*, Scene*> scenes = std::map<std::string*, Scene*>();
-    Scene* currentScene = nullptr;
+    std::string* currentScene = nullptr;
 
-    unsigned fps = 30;
     bool running = false;
+    
+    Scene* getScene(std::string &identifier);
 
 public:
     static Game* get();
 
-    void addScene(Scene* & scene);
+    void addScene(Scene* &scene);
 
     void loadScene(std::string &identifier);
-    void loadScene(Scene & scene);
+    void loadScene(Scene &scene);
 
-    unsigned getFps() const;
-    void setFps(const unsigned & fps);
     bool isRunning() const;
 
     void start();
