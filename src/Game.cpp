@@ -1,6 +1,8 @@
 #include <unordered_map>
 #include "Game.h"
 #include "exception/GameException.h"
+#include "Terminal.h"
+#include <unistd.h>
 
 using namespace std;
 
@@ -17,7 +19,7 @@ Game *Game::get() {
 }
 
 Scene* Game::getScene(std::string &identifier) {
-    auto it = scenes.find(&identifier);
+    auto it = scenes.find(identifier);
 
     if (it != scenes.end()){
         return it->second;
@@ -28,17 +30,17 @@ Scene* Game::getScene(std::string &identifier) {
 
 void Game::addScene(Scene* &scene) {
     string identifier = scene->getIdentifier(); // Imperative, getter returns a const and we need a non-const
-    if (this->scenes.count(&identifier)){
+    if (this->scenes.count(identifier)){
         throw GameException("scene with id '" + identifier + "' is already registered");
     }
-    this->scenes.insert(pair<string*, Scene*>(&identifier, scene));
+    this->scenes.insert(pair<string, Scene*>(identifier, scene));
 }
 
 void Game::loadScene(std::string &identifier) {
-    auto it = scenes.find(&identifier);
+    auto it = scenes.find(identifier);
 
     if (it != scenes.end()){
-        this->currentScene = &identifier;
+        this->currentScene = identifier;
     } else {
         throw GameException("scene with id '" + identifier + "' not found");
     }
@@ -51,9 +53,19 @@ void Game::loadScene(Scene &scene) {
 
 void Game::start() {
     this->running = true;
-    while (this->running){
-        string* identifier = currentScene;
-        Scene* s = this->getScene(*identifier);
+    char c;
+    while (this->running) {
+        string identifier = currentScene;
+        Scene* s = this->getScene(identifier);
+            
+        Matrix nextMatrix = s->render();
+        Terminal::clear();
+        Terminal::matrix(nextMatrix);
+        
+        usleep(1000000);
+        //c = Terminal::getch();
+        
+        s->update(c);
     }
 }
 

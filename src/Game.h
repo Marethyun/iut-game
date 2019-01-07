@@ -11,8 +11,8 @@ private:
     static Game* singleton;
     Game();
 
-    std::map<std::string*, Scene*> scenes = std::map<std::string*, Scene*>();
-    std::string* currentScene = nullptr;
+    std::map<std::string, Scene*> scenes = std::map<std::string, Scene*>();
+    std::string currentScene = "";
 
     bool running = false;
     

@@ -15,10 +15,10 @@ public:
     const std::string &getIdentifier() const;
 
     // Update the game info with inputs
-    virtual void update() = 0;
+    virtual void update(const char &lastInput) = 0;
 
-    // Renders the game matrix on the terminal
-    virtual void render() = 0;
+    // Returns the matrix
+    virtual Matrix render() = 0;
 
 };
 

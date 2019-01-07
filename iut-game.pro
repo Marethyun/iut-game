@@ -14,7 +14,8 @@ SOURCES += \
     src/main.cpp \
     src/Scene.cpp \
     src/Terminal.cpp \
-    src/Matrix.cpp
+    src/Matrix.cpp \
+    src/testscene.cpp
 
 HEADERS += \
     src/exception/GameException.h \
@@ -26,4 +27,5 @@ HEADERS += \
     src/Location.h \
     src/Scene.h \
     src/Terminal.h \
-    src/Matrix.h
+    src/Matrix.h \
+    src/testscene.h

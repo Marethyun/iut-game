@@ -23,6 +23,8 @@ public:
     static void cursorDown(const unsigned &count);
     static void cursorBack(const unsigned &count);
     static void cursorForward(const unsigned &count);
+    
+    static char getch();
 };
 
 
