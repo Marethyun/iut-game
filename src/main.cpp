@@ -1,33 +1,46 @@
 #include <iostream>
 #include "Color.h"
 
-#include "CellMatrix.h"
+#include "Matrix.h"
 #include "Terminal.h"
 
 #include <unistd.h>
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <termios.h>
+
+#include <thread>
+
 using namespace std;
 
+char getch() {
+        char buf = 0;
+        struct termios old = {0};
+        if (tcgetattr(0, &old) < 0)
+                perror("tcsetattr()");
+        old.c_lflag &= ~ICANON;
+        old.c_lflag &= ~ECHO;
+        old.c_cc[VMIN] = 1;
+        old.c_cc[VTIME] = 0;
+        if (tcsetattr(0, TCSANOW, &old) < 0)
+                perror("tcsetattr ICANON");
+        if (read(0, &buf, 1) < 0)
+                perror ("read()");
+        old.c_lflag |= ICANON;
+        old.c_lflag |= ECHO;
+        if (tcsetattr(0, TCSADRAIN, &old) < 0)
+                perror ("tcsetattr ~ICANON");
+        return (buf);
+}
+
 int main() {
-
-//    CellMatrix* matrix = new CellMatrix(10, 10, Cell(Color::reset, '#'));
-
-//    *matrix->at(Location(0, 4)) = Cell(Color::red + Color::bg_blue, '0');
-
-//    Terminal::moveCursor(10, 10);
-//    Terminal::matrix(*matrix);
-
-    while (true) {
-        usleep(1000000);
-        cout << "Hello" << endl;
+    
+    for (;;) {
+        char c = getch();
+    
+        cout << c << endl;
     }
-
-//    Terminal::clear();
-
-//    Terminal::cell(Cell(Color::bg_red, ' '));
-
-    char c;
-    cin >> c;
-
+    
     return 0;
 }

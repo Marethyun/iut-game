@@ -16,6 +16,16 @@ Game *Game::get() {
     return singleton;
 }
 
+Scene* Game::getScene(std::string &identifier) {
+    auto it = scenes.find(&identifier);
+
+    if (it != scenes.end()){
+        return it->second;
+    } else {
+        throw GameException("scene with id '" + identifier + "' not found");
+    }
+}
+
 void Game::addScene(Scene* &scene) {
     string identifier = scene->getIdentifier(); // Imperative, getter returns a const and we need a non-const
     if (this->scenes.count(&identifier)){
@@ -28,7 +38,7 @@ void Game::loadScene(std::string &identifier) {
     auto it = scenes.find(&identifier);
 
     if (it != scenes.end()){
-        this->currentScene = it->second;
+        this->currentScene = &identifier;
     } else {
         throw GameException("scene with id '" + identifier + "' not found");
     }
@@ -39,20 +49,16 @@ void Game::loadScene(Scene &scene) {
     loadScene(id);
 }
 
-unsigned Game::getFps() const {
-    return this->fps;
-}
-
-void Game::setFps(const unsigned &fps) {
-    this->fps = fps;
-}
-
 void Game::start() {
-
+    this->running = true;
+    while (this->running){
+        string* identifier = currentScene;
+        Scene* s = this->getScene(*identifier);
+    }
 }
 
 void Game::stop() {
-
+    this->running = false;
 }
 
 bool Game::isRunning() const {

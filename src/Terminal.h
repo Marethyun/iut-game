@@ -3,13 +3,14 @@
 
 
 #include <string>
-#include "CellMatrix.h"
+#include "Matrix.h"
+#include "Cell.h"
 
 class Terminal {
 public:
     static void clear();
     static void color(std::string string);
-    static void matrix(CellMatrix &cellMatrix);
+    static void matrix(Matrix &cellMatrix);
 
     static void cell(const Cell &cel);
 
