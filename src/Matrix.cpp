@@ -3,6 +3,8 @@
 #include <vector>
 #include "Cell.h"
 
+#include "Color.h"
+
 using namespace std;
 
 Matrix::Matrix(const unsigned int &height, const unsigned int &width, const Cell &defaultElem) : height(height), width(width) {
@@ -81,6 +83,27 @@ void Matrix::merge(const unsigned &x, const unsigned &y, Matrix &other) {
             this->merge(i, j, other.get(i2, j2));
         }
     }
+}
+
+void Matrix::text(const unsigned &x, const unsigned &y, const std::string &format, const std::string &text) {
+    
+    unsigned textWidth = this->getWidth();
+    //unsigned textHeight =
+    
+    Matrix textMatrix(1, text.size(), Cell());
+    
+    // Height
+    unsigned j = 0;
+    for (unsigned i(0); i < text.size(); ++i) {
+        if (i + 1 == textWidth) ++j;
+        textMatrix.replace(i, j, Cell(format, text[i]));
+    }
+    
+    merge(x, y, textMatrix);
+}
+
+void Matrix::text(const Location &location, const std::string &format, const std::string &text) {
+    this->text((unsigned) location.getX(), (unsigned) location.getY(), format, text);
 }
 
 void Matrix::merge(const Location &location, Matrix &other) {
