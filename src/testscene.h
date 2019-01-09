@@ -8,8 +8,8 @@
 
 class TestScene : public Scene {
 private:
-    Location playerLocation;
-    Matrix matrix;
+    Location jLocation = Location(0, 0);
+    Matrix matrix = Matrix(1, 2, Cell(Color::bg_lightgray, ' '));
     
 public:
     TestScene(const std::string &identifier);
