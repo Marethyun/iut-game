@@ -6,14 +6,15 @@
 
 using namespace std;
 
-TestScene::TestScene(const std::string &identifier) : Scene(identifier) {
-    
-}
+TestScene::TestScene(const std::string &identifier) : 
+    Scene(identifier),
+    playerLocation(Location(0, 0)),
+    matrix(Matrix(10, 20, Cell(Color::bg_lightgray, ' '))) { }
 
 void TestScene::update(const char &c){
     if (c == 'p') Game::get()->stop();
     
-    Location nextLocation = jLocation;
+    Location nextLocation = playerLocation;
     
     switch (c) {
         case 'z':
@@ -34,7 +35,7 @@ void TestScene::update(const char &c){
     }
     
     if (matrix.isInBounds(nextLocation)) {
-        jLocation = nextLocation;
+        playerLocation = nextLocation;
     }
 }
 
@@ -42,7 +43,7 @@ Matrix TestScene::render(){
     
     Matrix nextMatrix = matrix;
     
-    nextMatrix.merge(jLocation.getX(), jLocation.getY(), Cell(Color::red + Color::bold, '&'));
+    nextMatrix.merge(playerLocation.getX(), playerLocation.getY(), Cell(Color::red + Color::bold, '&'));
     
     return nextMatrix;
     
