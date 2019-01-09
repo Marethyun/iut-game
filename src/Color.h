@@ -5,9 +5,14 @@
 
 class Color {
 public:
-    static const std::string bold;
-
     static const std::string reset;
+    static const std::string bold;
+    static const std::string dim;
+    static const std::string underscore;
+    static const std::string blink;
+    static const std::string reverse;
+    static const std::string hidden;
+    
     static const std::string black;
     static const std::string red;
     static const std::string green;
@@ -15,7 +20,7 @@ public:
     static const std::string blue;
     static const std::string magenta;
     static const std::string cyan;
-    static const std::string lightgray;
+    static const std::string white;
 
     static const std::string bg_black;
     static const std::string bg_red;
@@ -24,7 +29,7 @@ public:
     static const std::string bg_blue;
     static const std::string bg_magenta;
     static const std::string bg_cyan;
-    static const std::string bg_lightgray;
+    static const std::string bg_white;
 private:
     static std::string vt100(std::string code);
 };
