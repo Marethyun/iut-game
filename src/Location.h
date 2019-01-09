@@ -4,16 +4,16 @@
 
 class Location {
 public:
-    Location(unsigned int x, unsigned int y);
+    Location(int x, int y);
 
-    unsigned int getX() const;
-    void setX(unsigned int x);
-    unsigned int getY() const;
-    void setY(unsigned int y);
+    int getX() const;
+    void setX(int x);
+    int getY() const;
+    void setY(int y);
 
 private:
-    unsigned x;
-    unsigned y;
+    int x;
+    int y;
 };
 
 

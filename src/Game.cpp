@@ -62,8 +62,7 @@ void Game::start() {
         Terminal::clear();
         Terminal::matrix(nextMatrix);
         
-        usleep(1000000);
-        //c = Terminal::getch();
+        c = Terminal::getch();
         
         s->update(c);
     }

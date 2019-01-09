@@ -1,19 +1,19 @@
 #include "Location.h"
 
-Location::Location(unsigned int x, unsigned int y) : x(x), y(y) {}
+Location::Location(int x, int y) : x(x), y(y) {}
 
-unsigned int Location::getX() const {
+int Location::getX() const {
     return x;
 }
 
-void Location::setX(unsigned int x) {
+void Location::setX(int x) {
     Location::x = x;
 }
 
-unsigned int Location::getY() const {
+int Location::getY() const {
     return y;
 }
 
-void Location::setY(unsigned int y) {
+void Location::setY(int y) {
     Location::y = y;
 }

@@ -25,13 +25,17 @@ void Terminal::matrix(Matrix &cellMatrix) {
         for (unsigned j(0); j < cellMatrix.getWidth(); ++j) {
             Cell cell = cellMatrix.get(j, i);
 
-            cout << cell.getFormat() << cell.getCharacter() << Color::reset;
+            cout << cell.getFormat() << cell.getCharacter() << Color::reset << std::flush;
         }
 
         // Place cursor at the beginning of the next line
         restoreCursor();
         cursorDown(1);
     }
+    
+    unsaveCursor();
+    cursorDown(1);
+    cout << std::flush;
 }
 
 void Terminal::cell(const Cell &cel) {
@@ -66,17 +70,21 @@ void Terminal::cursorBack(const unsigned &count) {
 
 // Source: https://code.i-harness.com/fr/q/66fe4
 char Terminal::getch() {
-        char buf = 0;
-        struct termios old = {0};
-        //tcgetattr(0, &old);
-        old.c_lflag &= ~ICANON;
-        old.c_lflag &= ~ECHO;
-        old.c_cc[VMIN] = 1;
-        old.c_cc[VTIME] = 0;
-        tcsetattr(0, TCSANOW, &old);
-        read(0, &buf, 1);
-        old.c_lflag |= ICANON;
-        old.c_lflag |= ECHO;
-        tcsetattr(0, TCSADRAIN, &old);
-        return (buf);
+    char buf = 0;
+    struct termios old = {0};
+    if (tcgetattr(0, &old) < 0)
+            perror("tcsetattr()");
+    old.c_lflag &= ~ICANON;
+    old.c_lflag &= ~ECHO;
+    old.c_cc[VMIN] = 1;
+    old.c_cc[VTIME] = 0;
+    if (tcsetattr(0, TCSANOW, &old) < 0)
+            perror("tcsetattr ICANON");
+    if (read(0, &buf, 1) < 0)
+            perror ("read()");
+    old.c_lflag |= ICANON;
+    old.c_lflag |= ECHO;
+    if (tcsetattr(0, TCSADRAIN, &old) < 0)
+            perror ("tcsetattr ~ICANON");
+    return (buf);
 }
