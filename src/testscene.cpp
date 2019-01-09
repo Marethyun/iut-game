@@ -43,8 +43,7 @@ Matrix TestScene::render(){
     
     Matrix nextMatrix = matrix;
     
-    nextMatrix.merge(playerLocation.getX(), playerLocation.getY(), Cell(Color::red + Color::bold, '&'));
+    nextMatrix.merge(playerLocation, Cell(Color::red + Color::bold, '&'));
     
     return nextMatrix;
-    
 }
