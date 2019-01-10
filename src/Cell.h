@@ -16,6 +16,9 @@ public:
 
     const std::string &getFormat() const;
     const char &getCharacter() const;
+    
+    void setFormat(const std::string &format);
+    void setCharacter(const char &character);
 
     Cell operator+(const Cell & other);
 

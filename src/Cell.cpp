@@ -20,6 +20,14 @@ const char& Cell::getCharacter() const {
     return character;
 }
 
+void Cell::setFormat(const std::string &format) {
+    this->format = format;
+}
+
+void Cell::setCharacter(const char &character) {
+    this->character = character;
+}
+
 Cell Cell::operator+(const Cell &other) {
     return Cell(this->getFormat() + other.getFormat(), other.getCharacter() == NULCHAR ? this->getCharacter() : other.getCharacter());
 }

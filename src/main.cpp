@@ -10,18 +10,25 @@
 #include <iomanip>
 #include <math.h>
 
+#include "scenes/GameScene.h"
+#include "scenes/MenuScene.h"
+
+#include "Map.h"
+
 using namespace std;
 
 int main() {
+    Game* game = Game::get();
+    Scene* mainMenu = new MenuScene("main_menu");
+    Scene* gameScene = new GameScene("game_core", Map(11, 11, Location(), 40, 8, 4, 8), 0);
     
-//    Matrix m (30, 50, Cell(Color::bg_blue));
+    game->addScene(mainMenu);
+    game->addScene(gameScene);
     
-//    m.text(0, 0, Color::white, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
+    game->loadScene(*gameScene);
+    game->start();
     
-//    Terminal::matrix(m);
-    
-    double i = ceil((double) 14 / (double) 6);
-    cout << i << endl;
-    
+    Terminal::clear();
+
     return 0;
 }

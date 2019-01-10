@@ -15,7 +15,12 @@ SOURCES += \
     src/Scene.cpp \
     src/Terminal.cpp \
     src/Matrix.cpp \
-    src/scenes/GameScene.cpp
+    src/scenes/GameScene.cpp \
+    src/labyrinth/labyrinth.cpp \
+    src/Map.cpp \
+    src/Player.cpp \
+    src/scenes/MenuScene.cpp \
+    src/scenes/DifficultyScene.cpp
 
 HEADERS += \
     src/exception/GameException.h \
@@ -29,4 +34,9 @@ HEADERS += \
     src/Terminal.h \
     src/Matrix.h \
     src/testscene.h \
-    src/scenes/GameScene.h
+    src/scenes/GameScene.h \
+    src/labyrinth/labyrinth.h \
+    src/Map.h \
+    src/Player.h \
+    src/scenes/MenuScene.h \
+    src/scenes/DifficultyScene.h
