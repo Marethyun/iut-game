@@ -23,7 +23,7 @@ public:
 
     void addScene(Scene* &scene);
 
-    void loadScene(std::string &identifier);
+    void loadScene(const std::string &identifier);
     void loadScene(Scene &scene);
 
     bool isRunning() const;

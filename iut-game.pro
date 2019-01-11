@@ -20,7 +20,8 @@ SOURCES += \
     src/Map.cpp \
     src/Player.cpp \
     src/scenes/MenuScene.cpp \
-    src/scenes/DifficultyScene.cpp
+    src/scenes/DifficultyScene.cpp \
+    src/Difficulty.cpp
 
 HEADERS += \
     src/exception/GameException.h \
@@ -39,4 +40,5 @@ HEADERS += \
     src/Map.h \
     src/Player.h \
     src/scenes/MenuScene.h \
-    src/scenes/DifficultyScene.h
+    src/scenes/DifficultyScene.h \
+    src/Difficulty.h

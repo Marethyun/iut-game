@@ -53,7 +53,7 @@ Map::Map(unsigned const &height,
                     break;
                 case '1':
                     this->objectsLocations.push_back(currentLocation);
-                    currentCell.setCharacter('+');
+                    currentCell.setCharacter('%');
                     currentCell.setFormat(Color::blue + Color::bold);
                     break;
                 case 'x':

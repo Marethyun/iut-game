@@ -13,7 +13,12 @@ MenuScene::MenuScene(const string &identifier) : Scene(identifier) {
 void MenuScene::update(const char &c) {
     switch (c) {
         case 'q':
+        case 'Q':
             Game::get()->stop();
+            break;
+
+        case 'a':
+            Game::get()->loadScene("difficulty");
             break;
     }
 }

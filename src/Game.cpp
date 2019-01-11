@@ -36,7 +36,7 @@ void Game::addScene(Scene* &scene) {
     this->scenes.insert(pair<string, Scene*>(identifier, scene));
 }
 
-void Game::loadScene(std::string &identifier) {
+void Game::loadScene(const std::string &identifier) {
     auto it = scenes.find(identifier);
 
     if (it != scenes.end()){

@@ -4,17 +4,31 @@
 #include <math.h>
 #include <sstream>
 
+#include <random>
+#include <iostream>
+
 using namespace std;
 
-GameScene::GameScene(const std::string &identifier, const Map &gameMap, const unsigned &difficulty) : 
+GameScene::GameScene(const std::string &identifier, const Difficulty &difficulty) :
     Scene(identifier), 
-    gameMap(gameMap),
+    gameMap(Map(
+        difficulty.height,
+        difficulty.width,
+        Location(),
+        difficulty.objectsCount,
+        difficulty.grassCount,
+        difficulty.grassSize,
+        difficulty.keysCount
+    )),
     totalKeys(gameMap.remainingKeys()),
-    player(Player(gameMap.getBegin(), Cell(Color::bold + Color::yellow, '&'), 2)),
+    player(Player(
+        gameMap.getBegin(),
+        Cell(Color::bold + Color::yellow, '&'),
+        difficulty.defaultVision
+    )),
     difficulty(difficulty),
     constraintVision(gameMap.isGrass(gameMap.getBegin())),
-    lastNote("Aladinde: ...") {
-}
+    lastNote("Aladinde: ...") {}
 
 void GameScene::update(const char &c) {
     
@@ -24,22 +38,31 @@ void GameScene::update(const char &c) {
         case 'z':
         case 'Z':
             nextLocation.setY(nextLocation.getY() - 1);
+            ++stepsCount;
             break;
         case 'q':
         case 'Q':
             nextLocation.setX(nextLocation.getX() - 1);
+            ++stepsCount;
             break;
         case 's':
         case 'S':
             nextLocation.setY(nextLocation.getY() + 1);
+            ++stepsCount;
             break;
         case 'd':
         case 'D':
             nextLocation.setX(nextLocation.getX() + 1);
+            ++stepsCount;
     }
     
     if (gameMap.isWall(nextLocation) || !gameMap.getMap().isInBounds(nextLocation)) {
+        --stepsCount;
         return;
+    }
+
+    if (this->lastNote.size() != 0) {
+        this->lastNote = "Aladinde: ...";
     }
     
     if (this->gameMap.isKey(nextLocation)) {
@@ -51,21 +74,33 @@ void GameScene::update(const char &c) {
     }
     
     this->constraintVision = this->gameMap.isGrass(nextLocation);
-    
+
     if (this->gameMap.isObject(nextLocation)) {
         srand(time(NULL));
         
-        bool goodObject = rand() % 2 == 0;
+        unsigned fdifficulty = (unsigned) floor(difficulty.goodObjectProb * 100);
+
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(0, 100);
+
+        unsigned g = dis(gen);
+
+        bool goodObject = g <= fdifficulty;
         
         if (goodObject) {
             if (this->player.getVision() < 6) {
                 this->player.setVision(this->player.getVision() + 1);
                 this->lastNote = "Aladinde: Glouglou ! (+1)";
+            } else {
+                this->lastNote = "Aladinde: Glou. (0)";
             }
         } else {
             if (this->player.getVision() > 1) {
                 this->player.setVision(this->player.getVision() - 1);
                 this->lastNote = "Aladinde: Gl..Eeek !? (-1)";
+            } else {
+                this->lastNote = "Aladinde: Glou. (0)";
             }
         }
         
@@ -73,7 +108,6 @@ void GameScene::update(const char &c) {
     }
     
     this->player.setLocation(nextLocation);
-    ++stepsCount;
 
 }
 
@@ -127,10 +161,7 @@ Matrix GameScene::render() {
     Matrix foot(1, gameWidth, Cell(Color::bg_red + Color::black));
     
     foot.text(0, 0, Color::white, this->lastNote);
-    
-    if (this->lastNote.size() != 0) {
-        this->lastNote = "Aladinde: ...";
-    }
+
     
     oss << "Porte " << (this->exitOpened ? "ouverte" : "fermee") << " (clefs: " << this->claimedKeys << "/" << this->totalKeys << ")";
     foot.text(foot.getWidth() - oss.str().size(), 0, Color::white, oss.str());
