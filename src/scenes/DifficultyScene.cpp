@@ -2,13 +2,57 @@
 
 #include "../Color.h"
 #include "../Game.h"
+#include "../Difficulty.h"
+
+#include "GameScene.h"
+
+using namespace std;
 
 DifficultyScene::DifficultyScene(const std::string &identifier) : Scene(identifier) {
     
 }
 
 void DifficultyScene::update(const char &c) {
-    if (c == 'r') Game::get()->loadScene("main_menu");
+    
+    Game* game = Game::get();
+    
+    string identifier = "game_core";
+    Scene* gameScene;
+    
+    switch (c) {
+        case 'a':
+            // Facile: 11x11, 5 obj, 60%, 3 clefs, 3 herbes de 2, vision de 2
+            gameScene = new GameScene(identifier, Difficulty("Facile", 11, 11, 5, 0.6, 3, 3, 2, 2));
+            
+            game->addScene(gameScene);
+            game->loadScene(*gameScene);
+            break;
+            
+        case 'b':
+            // Normal: 21x21, 10 obj, 50%, 5 clefs, 5 herbes de 3, vision de 2
+            gameScene = new GameScene(identifier, Difficulty("Normal", 21, 21, 10, 0.5, 5, 5, 3, 2));
+            game->addScene(gameScene);
+            game->loadScene(*gameScene);
+            break;
+        
+        case 'c':
+            // Difficile: 41x41, 20 obj, 40%, 10 clefs, 10 herbes de 4, vision de 2
+            gameScene = new GameScene(identifier, Difficulty("Difficile", 41, 41, 20, 0.4, 10, 10, 4, 2));
+            game->addScene(gameScene);
+            game->loadScene(*gameScene);
+            break;
+        
+        case 'd':
+            // Phasianidae: 101x101, 50 obj, 40%, 15 clefs, 20 herbes de 5, vision de 2
+            gameScene = new GameScene(identifier, Difficulty("Phasianidae", 101, 101, 50, 0.4, 15, 20, 5, 2));
+            game->addScene(gameScene);
+            game->loadScene(*gameScene);
+            break;
+        
+        case 'r':
+            game->loadScene("main_menu");
+            break;
+    }
 }
 
 Matrix DifficultyScene::render() {

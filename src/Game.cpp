@@ -51,6 +51,16 @@ void Game::loadScene(Scene &scene) {
     loadScene(id);
 }
 
+void Game::eraseScene(const std::string &identifier) {
+    auto it = scenes.find(identifier);
+
+    if (it != scenes.end()){
+        this->scenes.erase(identifier);
+    } else {
+        throw GameException("scene with id '" + identifier + "' not found");
+    }
+}
+
 void Game::start() {
     this->running = true;
     char c;

@@ -25,6 +25,8 @@ public:
 
     void loadScene(const std::string &identifier);
     void loadScene(Scene &scene);
+    
+    void eraseScene(const std::string &identifier);
 
     bool isRunning() const;
 

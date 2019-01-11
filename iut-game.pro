@@ -21,12 +21,13 @@ SOURCES += \
     src/Player.cpp \
     src/scenes/MenuScene.cpp \
     src/scenes/DifficultyScene.cpp \
-    src/Difficulty.cpp
+    src/Difficulty.cpp \
+    src/scenes/ResultsScene.cpp \
+    src/Remarks.cpp
 
 HEADERS += \
     src/exception/GameException.h \
     src/exception/SceneException.h \
-    src/external/bitmap_image.hpp \
     src/Cell.h \
     src/Color.h \
     src/Game.h \
@@ -41,4 +42,6 @@ HEADERS += \
     src/Player.h \
     src/scenes/MenuScene.h \
     src/scenes/DifficultyScene.h \
-    src/Difficulty.h
+    src/Difficulty.h \
+    src/scenes/ResultsScene.h \
+    src/Remarks.h

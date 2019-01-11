@@ -1,9 +1,9 @@
 #include "GameScene.h"
+#include "ResultsScene.h"
 #include "../Color.h"
 #include "../Game.h"
 #include <math.h>
 #include <sstream>
-
 #include <random>
 #include <iostream>
 
@@ -27,8 +27,8 @@ GameScene::GameScene(const std::string &identifier, const Difficulty &difficulty
         difficulty.defaultVision
     )),
     difficulty(difficulty),
-    constraintVision(gameMap.isGrass(gameMap.getBegin())),
-    lastNote("Aladinde: ...") {}
+    lastNote("Aladinde: ..."),
+    constraintVision(gameMap.isGrass(gameMap.getBegin())){}
 
 void GameScene::update(const char &c) {
     
@@ -56,6 +56,15 @@ void GameScene::update(const char &c) {
             ++stepsCount;
     }
     
+    if (this->exitOpened && gameMap.isEnd(nextLocation)) {
+        Scene* resultsScene = new ResultsScene("results", this->stepsCount, this->difficulty);
+        Game::get()->addScene(resultsScene);
+        Game::get()->loadScene(*resultsScene);
+        
+        Game::get()->eraseScene(this->getIdentifier());
+        return;
+    }
+    
     if (gameMap.isWall(nextLocation) || !gameMap.getMap().isInBounds(nextLocation)) {
         --stepsCount;
         return;
@@ -68,10 +77,11 @@ void GameScene::update(const char &c) {
     if (this->gameMap.isKey(nextLocation)) {
         this->gameMap.claimKey(nextLocation);
         ++this->claimedKeys;
-        if (this->claimedKeys == this->totalKeys) exitOpened = true;
         
         this->lastNote = "Aladinde: Glou.. Une clef.";
     }
+    
+    if (this->claimedKeys == this->totalKeys) exitOpened = true;
     
     this->constraintVision = this->gameMap.isGrass(nextLocation);
 
@@ -154,7 +164,7 @@ Matrix GameScene::render() {
     head.text(head.getWidth() - 21, 0, Color::white, oss.str());
     oss.str(std::string());
     // TODO CHANGER DIFFICULT
-    oss << "Ferme Facile (" << this->gameMap.getMap().getWidth() << "x" << this->gameMap.getMap().getHeight() << ")";
+    oss << this->difficulty.name << " (" << this->gameMap.getMap().getWidth() << "x" << this->gameMap.getMap().getHeight() << ")";
     head.text(0, 0, Color::white, oss.str());
     oss.str(std::string());
     
@@ -162,7 +172,6 @@ Matrix GameScene::render() {
     
     foot.text(0, 0, Color::white, this->lastNote);
 
-    
     oss << "Porte " << (this->exitOpened ? "ouverte" : "fermee") << " (clefs: " << this->claimedKeys << "/" << this->totalKeys << ")";
     foot.text(foot.getWidth() - oss.str().size(), 0, Color::white, oss.str());
     
