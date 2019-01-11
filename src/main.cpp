@@ -17,14 +17,15 @@ using namespace std;
 int main() {
     Game* game = Game::get();
     Scene* mainMenu = new MenuScene("main_menu");
-    Scene* gameScene = new GameScene("game_core", Difficulty(11, 11, 30, 0.5, 3, 3, 2, 2));
+    Scene* gameScene = new GameScene("game_core", Difficulty(25, 25, 25, 0.6, 5, 8, 4, 2));
     Scene* difficultyMenu = new DifficultyScene("difficulty");
 
     game->addScene(mainMenu);
     game->addScene(gameScene);
     game->addScene(difficultyMenu);
     
-    game->loadScene(*difficultyMenu);
+//    game->loadScene(*gameScene);
+    game->loadScene(*mainMenu);
     game->start();
     
     Terminal::clear();

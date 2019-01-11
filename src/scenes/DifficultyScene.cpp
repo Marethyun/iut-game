@@ -17,21 +17,34 @@ Matrix DifficultyScene::render() {
 
     global.text(3, 2, 34, Color::black, "Choisissez une difficulte:");
 
-    Matrix easy(1, 25, Cell());
-    easy.text(0, 0, Color::black, "- Facile (11x11)");
-    easy.text(easy.getWidth() - 3, 0, Color::black, "<A>");
+    Matrix easy(1, 30, Cell());
+    easy.text(0, 0, Color::black, "A - Facile");
+    easy.text(easy.getWidth() - 7, 0, Color::black, "(11x11)");
 
-    Matrix normal(1, 25, Cell());
-    normal.text(0, 0, Color::black, "- Normal (21x21)");
-    normal.text(normal.getWidth() - 3, 0, Color::black, "<B>");
+    Matrix normal(1, 30, Cell());
+    normal.text(0, 0, Color::black, "B - Normal");
+    normal.text(normal.getWidth() - 7, 0, Color::black, "(21x21)");
 
-    Matrix hard(1, 25, Cell());
-    hard.text(0, 0, Color::black, "- Difficile (31x31)");
-    hard.text(hard.getWidth() - 3, 0, Color::black, "<C>");
+    Matrix hard(1, 30, Cell());
+    hard.text(0, 0, Color::black, "C - Difficile");
+    hard.text(hard.getWidth() - 7, 0, Color::black, "(41x41)");
+
+    Matrix phasianidae(1, 30, Cell());
+    phasianidae.text(0, 0, Color::black, "D - Phasianidae");
+    phasianidae.text(phasianidae.getWidth() - 9, 0, Color::black, "(101x101)");
+
+    Matrix back(1, 30, Cell());
+    back.text(0, 0, Color::black, "R - Retour au menu");
 
     global.merge(5, 5, easy);
     global.merge(5, 6, normal);
     global.merge(5, 7, hard);
+    global.merge(5, 8, phasianidae);
+    global.merge(5, 10, back);
+
+    global.text(3, 13, Color::black, "Le saviez-vous?");
+
+    global.text(1, 15, 38, Color::black, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
 
     return global;

@@ -28,26 +28,14 @@ Matrix MenuScene::render() {
     
     global.text(3, 2, 34, Color::black, "Aladinde et le labyrinthe magique");
     
-    Matrix playText(1, 14, Cell());
-    playText.text(0, 0, Color::black, "Jouer");
-    playText.text(playText.getWidth() - 3, 0, Color::black, "<A>");
+    global.text(13, 7, Color::black, "A - Jouer");
     
-    Matrix tutorialText(1, 14, Cell());
-    tutorialText.text(0, 0, Color::black, "Tutoriel");
-    tutorialText.text(tutorialText.getWidth() - 3, 0, Color::black, "<B>");
+    global.text(13, 9, Color::black, "B - Tutoriel");
     
-    Matrix storyText(1, 14, Cell());
-    storyText.text(0, 0, Color::black, "Histoire");
-    storyText.text(storyText.getWidth() - 3, 0, Color::black, "<C>");
+    global.text(13, 11, Color::black, "C - Histoire");
+
+    global.text(13, 14, Color::black, "Q - Quitter");
     
-    Matrix quitText(1, 14, Cell());
-    quitText.text(0, 0, Color::black, "Quitter");
-    quitText.text(quitText.getWidth() - 3, 0, Color::black, "<Q>");
-    
-    global.merge(13, 7, playText);
-    global.merge(13, 9, tutorialText);
-    global.merge(13, 11, storyText);
-    global.merge(13, 13, quitText);
     
     return global;
 }
