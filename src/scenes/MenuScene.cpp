@@ -37,7 +37,7 @@ Matrix MenuScene::render() {
     
     global.text(13, 7, Color::black, "A - Jouer");
     
-    global.text(13, 9, Color::black, "B - Regles");
+    global.text(13, 9, Color::black, "B - Comment jouer");
     
     global.text(13, 11, Color::black, "C - Histoire");
 

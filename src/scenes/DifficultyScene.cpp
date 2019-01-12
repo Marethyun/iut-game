@@ -37,15 +37,15 @@ void DifficultyScene::update(const char &c) {
             break;
         
         case 'c':
-            // Difficile: 41x41, 20 obj, 40%, 10 clefs, 10 herbes de 4, vision de 2
-            gameScene = new GameScene(identifier, Difficulty("Difficile", 41, 41, 20, 0.4, 10, 10, 4, 2));
+            // Difficile: 41x41, 20 obj, 50%, 10 clefs, 10 herbes de 5, vision de 3
+            gameScene = new GameScene(identifier, Difficulty("Difficile", 41, 41, 20, 0.5, 10, 10, 5, 3));
             game->addScene(gameScene);
             game->loadScene(*gameScene);
             break;
         
         case 'd':
-            // Phasianidae: 101x101, 50 obj, 40%, 15 clefs, 20 herbes de 5, vision de 2
-            gameScene = new GameScene(identifier, Difficulty("Phasianidae", 101, 101, 50, 0.4, 15, 20, 5, 2));
+            // Phasianidae: 101x101, 50 obj, 40%, 15 clefs, 20 herbes de 7, vision de 3
+            gameScene = new GameScene(identifier, Difficulty("Phasianidae", 101, 101, 50, 0.4, 15, 20, 7, 3));
             game->addScene(gameScene);
             game->loadScene(*gameScene);
             break;
