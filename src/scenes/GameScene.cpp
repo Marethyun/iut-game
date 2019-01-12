@@ -2,6 +2,7 @@
 #include "ResultsScene.h"
 #include "../Color.h"
 #include "../Game.h"
+#include "../Config.h"
 #include <math.h>
 #include <sstream>
 #include <random>
@@ -34,26 +35,36 @@ void GameScene::update(const char &c) {
     
     Location nextLocation = this->player.getLocation();
     
-    switch (c) {
-        case 'z':
-        case 'Z':
-            nextLocation.setY(nextLocation.getY() - 1);
-            ++stepsCount;
-            break;
-        case 'q':
-        case 'Q':
-            nextLocation.setX(nextLocation.getX() - 1);
-            ++stepsCount;
-            break;
-        case 's':
-        case 'S':
-            nextLocation.setY(nextLocation.getY() + 1);
-            ++stepsCount;
-            break;
-        case 'd':
-        case 'D':
-            nextLocation.setX(nextLocation.getX() + 1);
-            ++stepsCount;
+    // Up
+    if (c == Config::get()->keyUp()) {
+        nextLocation.setY(nextLocation.getY() - 1);
+        ++stepsCount;
+    }
+    
+    // Left
+    if (c == Config::get()->keyLeft()) {
+        nextLocation.setX(nextLocation.getX() - 1);
+        ++stepsCount;
+    }
+    
+    // Down
+    if (c == Config::get()->keyDown()) {
+        nextLocation.setY(nextLocation.getY() + 1);
+        ++stepsCount;
+    }
+    
+    // Right
+    if (c == Config::get()->keyRight()) {
+        nextLocation.setX(nextLocation.getX() + 1);
+        ++stepsCount;
+    }
+    
+    // Give up
+    if (c == Config::get()->keyGiveUp()) {
+        Game::get()->loadScene("main_menu");
+        Game::get()->eraseScene(this->getIdentifier());
+        
+        return;
     }
     
     if (this->exitOpened && gameMap.isEnd(nextLocation)) {
@@ -161,7 +172,7 @@ Matrix GameScene::render() {
     head.text(head.getWidth() - 9, 0, Color::white, oss.str());
     oss.str(std::string());
     oss << "Coups: " << this->stepsCount;
-    head.text(head.getWidth() - 21, 0, Color::white, oss.str());
+    head.text(head.getWidth() - 22, 0, Color::white, oss.str());
     oss.str(std::string());
     // TODO CHANGER DIFFICULT
     oss << this->difficulty.name << " (" << this->gameMap.getMap().getWidth() << "x" << this->gameMap.getMap().getHeight() << ")";

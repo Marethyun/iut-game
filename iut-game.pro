@@ -23,7 +23,10 @@ SOURCES += \
     src/scenes/DifficultyScene.cpp \
     src/Difficulty.cpp \
     src/scenes/ResultsScene.cpp \
-    src/Remarks.cpp
+    src/Remarks.cpp \
+    src/scenes/RulesScene.cpp \
+    src/Config.cpp \
+    src/scenes/StoryScene.cpp
 
 HEADERS += \
     src/exception/GameException.h \
@@ -44,4 +47,7 @@ HEADERS += \
     src/scenes/DifficultyScene.h \
     src/Difficulty.h \
     src/scenes/ResultsScene.h \
-    src/Remarks.h
+    src/Remarks.h \
+    src/scenes/RulesScene.h \
+    src/Config.h \
+    src/scenes/StoryScene.h

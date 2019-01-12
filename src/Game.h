@@ -16,7 +16,7 @@ private:
 
     bool running = false;
     
-    Scene* getScene(std::string &identifier);
+    Scene* getScene(const std::string &identifier);
 
 public:
     static Game* get();

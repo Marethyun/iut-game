@@ -11,14 +11,14 @@ Game::Game() = default;
 Game* Game::singleton = nullptr;
 
 // Singleton
-Game *Game::get() {
+Game* Game::get() {
     if (!singleton){
         singleton = new Game();
     }
     return singleton;
 }
 
-Scene* Game::getScene(std::string &identifier) {
+Scene* Game::getScene(const std::string &identifier) {
     auto it = scenes.find(identifier);
 
     if (it != scenes.end()){
@@ -55,7 +55,11 @@ void Game::eraseScene(const std::string &identifier) {
     auto it = scenes.find(identifier);
 
     if (it != scenes.end()){
+        Scene* scene = this->getScene(identifier);
         this->scenes.erase(identifier);
+        
+        delete scene;
+        
     } else {
         throw GameException("scene with id '" + identifier + "' not found");
     }

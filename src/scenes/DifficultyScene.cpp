@@ -3,6 +3,7 @@
 #include "../Color.h"
 #include "../Game.h"
 #include "../Difficulty.h"
+#include "../Remarks.h"
 
 #include "GameScene.h"
 
@@ -59,7 +60,7 @@ Matrix DifficultyScene::render() {
 
     Matrix global(20, 40, Cell(Color::bg_white));
 
-    global.text(3, 2, 34, Color::black, "Choisissez une difficulte:");
+    global.text(3, 1, 34, Color::black, "Choisissez une difficulte:");
 
     Matrix easy(1, 30, Cell());
     easy.text(0, 0, Color::black, "A - Facile");
@@ -77,19 +78,18 @@ Matrix DifficultyScene::render() {
     phasianidae.text(0, 0, Color::black, "D - Phasianidae");
     phasianidae.text(phasianidae.getWidth() - 9, 0, Color::black, "(101x101)");
 
-    Matrix back(1, 30, Cell());
-    back.text(0, 0, Color::black, "R - Retour au menu");
+    global.merge(5, 4, easy);
+    global.merge(5, 5, normal);
+    global.merge(5, 6, hard);
+    global.merge(5, 7, phasianidae);
 
-    global.merge(5, 5, easy);
-    global.merge(5, 6, normal);
-    global.merge(5, 7, hard);
-    global.merge(5, 8, phasianidae);
-    global.merge(5, 10, back);
+    global.text(3, 9, Color::black, "Le saviez-vous?");
+    
+    string remark = Remarks::getRandom();
+    
+    global.text(1, 11, 38, Color::black, remark);
 
-    global.text(3, 13, Color::black, "Le saviez-vous?");
-
-    global.text(1, 15, 38, Color::black, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
+    global.text(3, 18, Color::black, "R - Retour au menu");
 
     return global;
 }

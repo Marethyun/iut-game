@@ -12,14 +12,21 @@ MenuScene::MenuScene(const string &identifier) : Scene(identifier) {
 
 void MenuScene::update(const char &c) {
     switch (c) {
-        case 'q':
-        case 'Q':
-            Game::get()->stop();
-            break;
-
         case 'a':
             Game::get()->loadScene("difficulty");
             break;
+            
+        case 'b':
+            Game::get()->loadScene("rules");
+            break;
+            
+        case 'c':
+            Game::get()->loadScene("story");
+            break;
+            
+        case 'q':
+            Game::get()->stop();
+            break;   
     }
 }
 
@@ -30,12 +37,11 @@ Matrix MenuScene::render() {
     
     global.text(13, 7, Color::black, "A - Jouer");
     
-    global.text(13, 9, Color::black, "B - Tutoriel");
+    global.text(13, 9, Color::black, "B - Regles");
     
     global.text(13, 11, Color::black, "C - Histoire");
 
     global.text(13, 14, Color::black, "Q - Quitter");
-    
     
     return global;
 }
