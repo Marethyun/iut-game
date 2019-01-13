@@ -38,7 +38,6 @@ HEADERS += \
     src/Scene.h \
     src/Terminal.h \
     src/Matrix.h \
-    src/testscene.h \
     src/scenes/GameScene.h \
     src/labyrinth/labyrinth.h \
     src/Map.h \
