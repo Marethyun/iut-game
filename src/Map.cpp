@@ -1,5 +1,5 @@
 #include "Map.h"
-#include "labyrinth/labyrinth.h"
+#include "labyrinth/maze.h"
 #include "Terminal.h"
 #include <iostream>
 #include "Color.h"
@@ -15,16 +15,16 @@ Map::Map(unsigned const &height,
          unsigned const &grassSize,
          unsigned const &keysCount) {
     CMatrix rawMatrix;
-    
-    genere_labyrinth(rawMatrix, 
-                     width, 
-                     height, 
-                     beginLocation.getY(), 
-                     beginLocation.getX(), 
-                     objectsCount,
-                     grassCount,
-                     grassSize,
-                     keysCount
+
+    gen_maze(rawMatrix,
+             width,
+             height,
+             beginLocation.getY(),
+             beginLocation.getX(),
+             objectsCount,
+             grassCount,
+             grassSize,
+             keysCount
     );
     
     this->mapMatrix = Matrix(height, width, Cell(Color::bg_white));

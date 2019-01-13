@@ -3,20 +3,19 @@
 
 #include "Scene.h"
 #include "Game.h"
-#include "Color.h"
 #include "Terminal.h"
-#include "Remarks.h"
-#include "Config.h"
 
 #include "scenes/MenuScene.h"
 #include "scenes/DifficultyScene.h"
 #include "scenes/RulesScene.h"
 #include "scenes/StoryScene.h"
 
-#include "Map.h"
-
 using namespace std;
 
+/**
+ * The main method of the program, instantiate the main scenes, add them to the Game instance,
+ * loads the main menu, and starts the game itself.
+ */
 int main() {
     Game* game = Game::get();
     

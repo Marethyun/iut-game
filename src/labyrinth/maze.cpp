@@ -2,16 +2,10 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-#include "labyrinth.h"
+#include "maze.h"
 
 using namespace std;
 
-/**
- * @brief GoTop permet à l'extracteur de se déplacer vers le haut
- * @param Mat est la matrice en cours d'extraction
- * @param CExtract représente les coordonnées de l'extracteur qui doivent être actualisées
- * @return on retourne les coordonnées de l'extracteur actualisés
- */
 pair <unsigned, unsigned> GoTop (CMatrix & Mat, pair <unsigned, unsigned> CExtract)
 {
     Mat[CExtract.first - 1][CExtract.second] = '0';
@@ -20,12 +14,6 @@ pair <unsigned, unsigned> GoTop (CMatrix & Mat, pair <unsigned, unsigned> CExtra
     return CExtract;
 }
 
-/**
- * @brief GoRight permet à l'extracteur de se déplacer vers la droite
- * @param Mat est la matrice en cours d'extraction
- * @param CExtract CExtract représente les coordonnées de l'extracteur qui doivent être actualisées
- * @return on retourne les coordonnées de l'extracteur actualisés
- */
 pair <unsigned, unsigned> GoRight (CMatrix & Mat, pair <unsigned, unsigned> CExtract)
 {
     Mat[CExtract.first][CExtract.second + 1] = '0';
@@ -33,13 +21,6 @@ pair <unsigned, unsigned> GoRight (CMatrix & Mat, pair <unsigned, unsigned> CExt
     CExtract.second = CExtract.second + 2;
     return CExtract;
 }
-
-/**
- * @brief GoBottom permet à l'extracteur de se déplacer vers le bas
- * @param Mat est la matrice en cours d'extraction
- * @param CExtract CExtract représente les coordonnées de l'extracteur qui doivent être actualisées
- * @return on retourne les coordonnées de l'extracteur actualisés
- */
 
 pair <unsigned, unsigned> GoBottom (CMatrix & Mat, pair <unsigned, unsigned> CExtract)
 {
@@ -49,12 +30,6 @@ pair <unsigned, unsigned> GoBottom (CMatrix & Mat, pair <unsigned, unsigned> CEx
     return CExtract;
 }
 
-/**
- * @brief GoLeft permet à l'extracteur de se déplacer vers la gauche
- * @param Mat est la matrice en cours d'extraction
- * @param CExtract CExtract représente les coordonnées de l'extracteur qui doivent être actualisées
- * @return on retourne les coordonnées de l'extracteur actualisés
- */
 pair <unsigned, unsigned> GoLeft (CMatrix & Mat, pair <unsigned, unsigned> CExtract)
 {
     Mat[CExtract.first][CExtract.second - 1] = '0';
@@ -63,20 +38,8 @@ pair <unsigned, unsigned> GoLeft (CMatrix & Mat, pair <unsigned, unsigned> CExtr
     return CExtract;
 }
 
-/**
- * @brief genere_labyrinth est une fonction qui permet la génération du labyrinthe et de ces objets
- * @param Mat est la matrice qui contiendra chaque case du labyrinthe
- * @param NbColumn paramètre permettant de déterminer le nombre de colonnes
- * @param NbLine paramètre permettant de déterminer le nombre de lignes
- * @param PosF détermine le spawn de départ, la position verticale
- * @param PosS détermine le spawn de départ, la position horizontale
- * @param NbObjets détermine les nombres d'objets spéciaux a placé dans le labyrinthe de façon aléatoire
- * @param NumberZoneGrass détermine le nombre de zone d'herbe à placer aléatoirement
- * @param GrassSize détermine la taille de chacune de ces zones d'herbes
- * @param NumberKey détermine le nombre de clé
- * @return retourne à la fin de la fonction la matrice customisé
- */
-CMatrix genere_labyrinth (CMatrix & Mat, unsigned NbColumn, unsigned NbLine, unsigned PosF, unsigned PosS, unsigned NbObjets, unsigned NumberZoneGrass, unsigned GrassSize, unsigned NumberKey)
+CMatrix gen_maze(CMatrix &Mat, unsigned NbColumn, unsigned NbLine, unsigned PosF, unsigned PosS, unsigned NbObjets,
+                 unsigned NumberZoneGrass, unsigned GrassSize, unsigned NumberKey)
 {
     //basé sur une vidéo : https://www.youtube.com/watch?v=LLY9K0_y494&t=293s (à partir de 2:30 jusqu'a 3:30)
     //on genere la matrice
