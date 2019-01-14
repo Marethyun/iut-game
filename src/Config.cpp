@@ -32,6 +32,8 @@ Config::Config()
         
         this->properties.insert(pair<string, string>(key, value));        
     }
+    
+    ifs.close();
 }
 
 Config* Config::get() {
