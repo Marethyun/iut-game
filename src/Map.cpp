@@ -1,5 +1,5 @@
 #include "Map.h"
-#include "labyrinth/maze.h"
+#include "maze/maze.h"
 #include "Terminal.h"
 #include <iostream>
 #include "Color.h"

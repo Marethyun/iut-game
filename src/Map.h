@@ -8,7 +8,7 @@
  */
 
 #include "Matrix.h"
-#include "labyrinth/maze.h"
+#include "maze/maze.h"
 #include <vector>
 
 /**
