@@ -33,7 +33,7 @@ private:
     /**
      * @brief The game scenes, identified by a string
      */
-    std::map<std::string, Scene*> scenes = std::map<std::string, Scene*>();
+    std::map<std::string, Scene*> scenes;
 
     /**
      * @brief The identifier to the current loaded scene

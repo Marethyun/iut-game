@@ -36,6 +36,9 @@ public:
     /**
      * @brief Prints a matrix to the terminal
      * @param cellMatrix The matrix
+     * 
+     * Known issue: The calls to vt100 features to save, un-save, and restore the cursor position
+     * are unsupported on common OSX consoles.
      */
     static void matrix(Matrix &cellMatrix);
 

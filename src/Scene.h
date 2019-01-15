@@ -39,7 +39,16 @@ public:
      * @param identifier
      */
     Scene(const std::string &identifier);
-
+    
+    /**
+     * @brief The default scene destructor
+     * 
+     * Required for any call to delete in child classes
+     * 
+     * @see Game#eraseScene()
+     */
+    virtual ~Scene();
+    
     /**
      * Getter for the identifier
      * @return The scene @ref #identifier
@@ -64,7 +73,6 @@ public:
      * @return The screen Matrix
      */
     virtual Matrix render() = 0;
-
 };
 
 #endif
