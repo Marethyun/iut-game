@@ -2,7 +2,8 @@
 
 #include "../Color.h"
 #include "../Game.h"
-#include <math.h>
+#include <cmath>
+#include <ctime>
 
 using namespace std;
 

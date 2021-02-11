@@ -1,13 +1,23 @@
 #include <iostream>
 #include "Terminal.h"
 #include "Color.h"
-#include <termios.h>
 #include <unistd.h>
+
+#ifdef WINDOWS
+    #include "conio.h"
+#else
+    #include <termios.h>
+#endif
 
 using namespace std;
 
 void Terminal::clear() {
-    printf("\033[2J\033[H");
+    #ifdef WINDOWS
+        // Pas de clrscr sous MINGW
+        system("cls");
+    #else
+        printf("\033[2J\033[H");
+    #endif
 }
 
 void Terminal::color(std::string color) {
@@ -68,6 +78,11 @@ void Terminal::cursorBack(const unsigned &count) {
     std::cout << "\033[" + std::to_string(count) + "D";
 }
 
+#ifdef WINDOWS
+char Terminal::getch() {
+    return ::getch();
+}
+#else
 // Source: https://code.i-harness.com/fr/q/66fe4
 char Terminal::getch() {
     char buf = 0;
@@ -88,3 +103,4 @@ char Terminal::getch() {
             perror ("tcsetattr ~ICANON");
     return (buf);
 }
+#endif
